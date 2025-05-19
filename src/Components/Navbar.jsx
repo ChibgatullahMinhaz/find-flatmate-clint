@@ -40,9 +40,14 @@ const Navbar = () => {
             <li>
               <NavLink to="/MyListing">My Listings </NavLink>
             </li>
+            <li className=" block">
+              <ToggleButton />
+            </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Find Flatmate</a>
+        <a className="btn btn-ghost text-xl">
+          Find <span className="text-purple-400">Flatmate</span>{" "}
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -53,7 +58,7 @@ const Navbar = () => {
             <NavLink to="/Add-to-Find-Roommate">Add to Find Roommate</NavLink>
           </li>
           <li>
-            <NavLink to="/Browse Listing">Browse Listing</NavLink>
+            <NavLink to="/BrowseListing">Browse Listing</NavLink>
           </li>
           <li>
             <NavLink to="/MyListing">My Listings </NavLink>
@@ -61,9 +66,11 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end flex gap-x-2.5">
-        <ToggleButton />
-        <Link className="btn btn-active">Login</Link>
-        <Link className="btn">Signup</Link>
+        <div className="sm:block hidden">
+          <ToggleButton />
+        </div>
+        <Link className="btn btn-primary">Login</Link>
+        <Link className="btn btn-primary">Signup</Link>
       </div>
     </div>
   );
