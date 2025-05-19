@@ -1,12 +1,63 @@
-# React + Vite
+# 🏠 Find Flatmate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Find Flatmate** is a full-stack web application designed to help individuals find compatible roommates based on location, lifestyle preferences, rent budget, and interests. Users can add, browse, and manage listings, as well as interact with others via a liking system. The application is responsive, secure, and packed with essential user-friendly features.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Website
 
-## Expanding the ESLint configuration
+🔗 [Live Site URL](https://find-roomies.web.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features
+
+- 🔒 **User Authentication**  
+  Users can register and log in using email/password or Google login via Firebase.
+
+- 🛡 **Protected Routes**  
+  Pages like “Add Listing”, “My Listings”, and “Details” are accessible only to logged-in users.
+
+- 📄 **CRUD Functionalities**  
+  Users can create, read, update, and delete their roommate posts.
+
+- ❤️ **Like System & Contact Reveal**  
+  Logged-in users can like others' posts, and contact number reveals only after liking. Self-posts can’t be liked.
+
+- 🌗 **Dark/Light Theme Toggle**  
+  Users can switch between light and dark themes using a toggle button powered by DaisyUI.
+
+- 📱 **Fully Responsive Design**  
+  Optimized layout for mobile, tablet, and desktop views.
+
+- 🧩 **Animations & Effects**  
+  Integrated Lottie React and React Awesome Reveal for enhanced UI experience.
+
+- 🧾 **Dynamic Roommate Listings**  
+  Real-time data fetching from MongoDB with pagination and filtering options.
+
+---
+
+## 📁 Technologies Used
+
+**Client:**
+- React.js, React Router DOM
+- Tailwind CSS & DaisyUI
+- Firebase Authentication
+- Lottie React, React Awesome Reveal
+- React Hook Form, React Toastify
+
+**Server:**
+- Node.js, Express.js, MongoDB
+- Mongoose, dotenv, CORS
+
+---
+
+
+
+## 📞 Contact
+
+Developed by: **[Chibgatullah Minhaz]**  
+Email: [chminhaz.info@gmail.com](mailto:chminhaz.info@gmail.com)
+
+---
