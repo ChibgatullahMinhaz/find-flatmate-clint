@@ -1,4 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+.minHight {
+  min-height: calc(100vh - 430px);
+}
 
+.active{
+  background-color: darkslategray;
+  color: beige;
+}
