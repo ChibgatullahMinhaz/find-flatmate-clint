@@ -1,7 +1,6 @@
 import React from "react";
 import ToggleButton from "./UI/ToggleButton";
 import { Link } from "react-router";
-import ThemeToggle from "./UI/ThemeToggle";
 
 const Navbar = () => {
   return (
