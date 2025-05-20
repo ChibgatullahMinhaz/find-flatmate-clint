@@ -98,3 +98,53 @@ export const MOCK_LISTINGS = [
       createdAt: "2023-05-08T09:15:00Z"
     }
   ];
+
+
+
+  export const tips = [
+    {
+      id: 1,
+      title: "Communication is Key",
+      description:
+        "Set clear expectations about noise levels, guests, and shared spaces from the start.",
+      icon: "fas fa-comments", // You can use this key to render the icon in your React component
+    },
+    {
+      id: 2,
+      title: "Respect Privacy",
+      description:
+        "Always knock before entering someone's room and establish boundaries.",
+      icon: "fas fa-door-closed",
+    },
+    {
+      id: 3,
+      title: "Create a Cleaning Schedule",
+      description:
+        "Divide responsibilities and create a fair system for household chores.",
+      icon: "fas fa-broom",
+    },
+  ];
+  
+  export const reasons = [
+    {
+      title: "Smart Matching",
+      description:
+        "Our algorithm helps you find roommates with compatible lifestyles and preferences.",
+    },
+    {
+      title: "Verified Listings",
+      description:
+        "All listings are verified to ensure safety and authenticity.",
+    },
+    {
+      title: "Easy Communication",
+      description:
+        "Connect directly with potential roommates through our secure platform.",
+    },
+    {
+      title: "Detailed Profiles",
+      description:
+        "View comprehensive profiles to make informed decisions.",
+    },
+  ];
+  
