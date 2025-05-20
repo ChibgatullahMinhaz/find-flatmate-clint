@@ -1,13 +1,40 @@
 import React from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const formData = new FormData(form);
+    const email = formData.get("email");
+    const password = formData.get("password");
     console.log(email, password);
+
+    if (email === "" || password === "") {
+      toast.error("Email and password are required");
+      return;
+    }
+    if (!/\d/.test(password)) {
+      toast.error("Password must include at least one digit (0-9)");
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must include at least one lowercase letter (a-z)");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must include at least one uppercase letter (A-Z)");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+
+
   };
   const handleGoogleSignIn = () => {
     console.log("google sign in");
@@ -25,14 +52,15 @@ const Login = () => {
       </h1>
       <form onSubmit={handleLogin} className="space-y-6">
         <div className="space-y-1 text-sm">
-          <label htmlFor="username" className="block">
-            Username
+          <label htmlFor="email" className="block">
+            Email
           </label>
           <input
             type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
+            name="email"
+            required
+            placeholder="Enter your email"
+            autoComplete="email"
             className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
           />
         </div>
@@ -41,10 +69,11 @@ const Login = () => {
             Password
           </label>
           <input
+            required
             type="password"
             name="password"
-            id="password"
-            placeholder="Password"
+            placeholder="Enter your password"
+            autoComplete="current-password"
             className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
           />
           <div className="flex justify-end text-xs dark:text-gray-600">

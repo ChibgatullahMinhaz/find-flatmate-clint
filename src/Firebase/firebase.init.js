@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDv35NKAGVt5PQnN6SbLzqF0HIBBGMLu1w",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "find-roomies.firebaseapp.com",
   projectId: "find-roomies",
   storageBucket: "find-roomies.firebasestorage.app",
@@ -14,4 +15,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
-// export const auth = getAuth();
+export const auth = getAuth();
