@@ -5,7 +5,6 @@ import { AuthContext } from "../Context/Context/AuthContext";
 
 const AddRoommatePage = () => {
   const { user } = use(AuthContext);
-  console.log(user);
   const [lifestyle, setLifestyle] = useState(lifestylePreferences);
 
   const handleCheckboxChange = (id) => {
