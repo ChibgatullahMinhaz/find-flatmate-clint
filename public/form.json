@@ -1,0 +1,18 @@
+{
+    "_id": "ObjectId",
+    "title": "Looking for a roommate in NYC",
+    "location": "New York, NY",
+    "rent": 800,
+    "roomType": "Shared",                // Single / Shared
+    "lifestyle": ["Pets", "Night Owl"], // Array of strings
+    "description": "Clean, quiet, loves cooking",
+    "availability": "Available",        // or "Not Available"
+    "contactNumber": "017XXXXXXXX",     // will be hidden until liked
+    "userEmail": "user@example.com",
+    "userName": "Minhaz",
+    "userPhoto": "https://photo.url",   // optional
+    "likeCount": 0,                     // initially 0
+    "likedBy": [],                      // list of user emails (optional)
+    "createdAt": "2025-05-20T12:00:00Z"
+  }
+  
