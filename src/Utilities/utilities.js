@@ -12,7 +12,48 @@
 ];
 export default lifestylePreferences;
 
-
+export const slides = [
+    {
+      id: 1,
+      title: "Find Your Perfect Roommate Match",
+      description:
+        "Our smart matching system helps you find roommates with compatible lifestyles, schedules, and preferences.",
+      image:
+        "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80",
+      buttonText: "Start Matching",
+      buttonLink: "/BrowseListing",
+    },
+    {
+      id: 2,
+      title: "Safe & Trusted Community",
+      description:
+        "Join thousands of verified users who have successfully found their ideal living arrangements through our platform.",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3wT99HSPTRGAPEQqVJRU0_xoqkQuxXtsyAvv-qL8mSMpKp6mWG0fW9I0Lvg69HiYULU&usqp=CAU",
+      buttonText: "Browse Listings",
+      buttonLink: "/BrowseListing",
+    },
+    {
+      id: 3,
+      title: "Share Costs, Save Money",
+      description:
+        "Split rent, utilities and living expenses with a compatible roommate and save up to 50% on your monthly housing costs.",
+      image:
+        "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
+      buttonText: "Create Listing",
+      buttonLink: "/Add-to-Find-Roommate",
+    },
+    {
+      id: 4,
+      title: "Find Roommates Nearby",
+      description:
+        "Discover potential roommates in your preferred neighborhoods and locations with our location-based search.",
+      image:
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=80",
+      buttonText: "Explore Areas",
+      buttonLink: "/BrowseListing",
+    },
+  ];
 
 
 
@@ -107,7 +148,7 @@ export const MOCK_LISTINGS = [
       title: "Communication is Key",
       description:
         "Set clear expectations about noise levels, guests, and shared spaces from the start.",
-      icon: "fas fa-comments", // You can use this key to render the icon in your React component
+      icon: "fas fa-comments", 
     },
     {
       id: 2,

@@ -18,3 +18,9 @@ body{
   background-color: darkslategray;
   color: beige;
 }
+
+
+.slider-container {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}

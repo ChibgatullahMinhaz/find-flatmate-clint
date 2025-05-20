@@ -42,17 +42,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/add-roommate" className="text-gray-300 hover:text-purple-400 transition-colors">
+                <Link to="/Add-to-Find-Roommate" className="text-gray-300 hover:text-purple-400 transition-colors">
                   Add to Find Roommate
                 </Link>
               </li>
               <li>
-                <Link to="/browse" className="text-gray-300 hover:text-purple-400 transition-colors">
+                <Link to="/BrowseListing" className="text-gray-300 hover:text-purple-400 transition-colors">
                   Browse Listing
                 </Link>
               </li>
               <li>
-                <Link to="/my-listings" className="text-gray-300 hover:text-purple-400 transition-colors">
+                <Link to="/MyListing" className="text-gray-300 hover:text-purple-400 transition-colors">
                   My Listings
                 </Link>
               </li>

@@ -1,13 +1,14 @@
 import { Navigate, useLocation } from "react-router";
 import { AuthContext } from "../Context/Context/AuthContext";
 import { useContext } from "react";
+import LoadingSpinner from "../Components/UI/LoadingSpinner";
 
 const PrivateRoute = ({ children }) => {
   const { user,loading } = useContext(AuthContext);
   const location = useLocation();
   console.log(location.pathname);
   if(loading){
-    return <div>Loading...</div>
+    return <LoadingSpinner />
   }
 
   if (!user) {
