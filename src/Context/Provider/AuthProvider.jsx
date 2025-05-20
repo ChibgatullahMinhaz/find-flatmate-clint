@@ -9,10 +9,9 @@ import {
 import { auth } from "../../Firebase/firebase.init";
 import { AuthContext } from "../Context/AuthContext";
 
-
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading,setLoading ] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -27,8 +26,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
- 
- 
+
   const logout = () => {
     return signOut(auth);
   };

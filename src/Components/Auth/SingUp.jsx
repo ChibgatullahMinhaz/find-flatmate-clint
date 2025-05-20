@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/Context/AuthContext";
 const SingUp = () => {
+    const {user} = useContext(AuthContext);
   const handleGoogleSignIn = () => {
     console.log("google sign in");
   };
@@ -36,6 +38,7 @@ const SingUp = () => {
       return;
     }
     
+
   };
   return (
     <motion.div

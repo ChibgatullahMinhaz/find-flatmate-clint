@@ -1,8 +1,12 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import { GoogleAuthProvider } from "firebase/auth";
+import { AuthContext } from "../../Context/Context/AuthContext";
 const Login = () => {
+    const {creteUserWithGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -36,8 +40,19 @@ const Login = () => {
 
 
   };
+
+  const provider = new GoogleAuthProvider();
   const handleGoogleSignIn = () => {
-    console.log("google sign in");
+    creteUserWithGoogle(provider)
+    .then(result => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Login successful");
+        navigate( location?.state?.from || "/");
+    })
+    .catch(error => {
+        toast.error(error.message);
+    })
   };
   return (
     <motion.div
