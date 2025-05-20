@@ -49,7 +49,7 @@ const Navbar = () => {
               <NavLink to="/Add-to-Find-Roommate">Add to Find Roommate</NavLink>
             </li>
             <li>
-              <NavLink to="/Browse Listing">Browse Listing</NavLink>
+              <NavLink to="/BrowseListing">Browse Listing</NavLink>
             </li>
             <li>
               <NavLink to="/MyListing">My Listings </NavLink>

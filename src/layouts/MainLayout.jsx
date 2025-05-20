@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import ScrollToTop from "../Components/UI/ScrollToTop";
 import GoTopButton from "../Components/UI/GoTopButton";
 import { ToastContainer } from "react-toastify";
+import LoadingSpinner from "../Components/UI/LoadingSpinner";
 import {motion} from 'framer-motion'
 const MainLayout = () => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ const MainLayout = () => {
     setLoading(true);
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 500);
     return () => clearTimeout(timeout);
   }, [location]);
   
@@ -31,7 +32,11 @@ const MainLayout = () => {
           <Navbar />
         </nav>
       </motion.header>
-      <main className="minHight">{loading ? "Loading......" : <Outlet />}</main>
+      <main className="minHight">{loading ? 
+      <>
+      <LoadingSpinner />
+      </>
+      : <Outlet />}</main>
 
       <motion.footer
       initial={{opacity: 0, y: 50}}
