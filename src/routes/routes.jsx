@@ -7,6 +7,7 @@ import BrowseListing from "../pages/BrowseListing";
 import AddToFindRommate from "../pages/AddToFindRommate";
 import Login from "../Components/Auth/Login";
 import SingUp from "../Components/Auth/SingUp";
+import PrivateRoute from "./PrivetRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "Add-to-Find-Roommate",
-        element: <AddToFindRommate />,
+        element: <PrivateRoute><AddToFindRommate /></PrivateRoute> ,
       },
       {
         path: "/BrowseListing",
@@ -27,7 +28,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/MyListing",
-        element: <MyListing />,
+        element: <PrivateRoute><MyListing /></PrivateRoute> ,
       },
       {
         path: "/Login",

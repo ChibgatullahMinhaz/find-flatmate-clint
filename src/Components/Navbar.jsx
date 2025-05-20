@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import ToggleButton from "./UI/ToggleButton";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/Context/AuthContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, loading, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Logout successful",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    logout();
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -69,8 +83,23 @@ const Navbar = () => {
         <div className="sm:block hidden">
           <ToggleButton />
         </div>
-        <Link to={`/Login`} className="btn btn-primary">Login</Link>
-        <Link to={`/SignUp`} className="btn btn-primary">Signup</Link>
+        {user ? (
+        <>
+        <div>
+          <img src={user?.photoURL} alt={user?.displayName} />
+          <button className="btn bg-[var(--btn-primary)] text-gray-200" onClick={handleLogout}>Logout</button>
+        </div>
+        </>
+        ) : (
+          <>
+            <Link to={`/Login`} className="btn btn-primary">
+              Login
+            </Link>
+            <Link to={`/SignUp`} className="btn btn-primary">
+              Signup
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

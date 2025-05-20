@@ -7,6 +7,9 @@
   --btn-neutral: #333333;
   --btn-base-100: #444444;
 }
+body{
+  overflow-x: hidden;
+}
 .minHight {
   min-height: calc(100vh - 430px);
 }

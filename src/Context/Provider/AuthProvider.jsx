@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const userLogin = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -31,12 +32,13 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
       return () => unsubscribe();
     });
-  }, [setLoading]);
+  }, []);
 
   const userInfo = {
     user,

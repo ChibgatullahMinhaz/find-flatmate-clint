@@ -1,19 +1,32 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/Context/AuthContext";
+import { GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
 const SingUp = () => {
-    const {user} = useContext(AuthContext);
+  const { creteUserWithGoogle, createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const provider = new GoogleAuthProvider();
   const handleGoogleSignIn = () => {
-    console.log("google sign in");
+    creteUserWithGoogle(provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Login successful");
+        navigate(location?.state?.from || "/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { name, photo, email, password } = Object.fromEntries(formData);
-    console.log(name, photo, email, password);
+    const { email, password, ...others } = Object.fromEntries(formData);
 
     if (email === "" || password === "") {
       toast.error("Email and password are required");
@@ -37,9 +50,25 @@ const SingUp = () => {
       toast.error("Password must be at least 6 characters long");
       return;
     }
-    
-
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your account has been created",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(location?.state?.from || "/");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -110,7 +139,7 @@ const SingUp = () => {
           </div>
         </div>
         <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 cursor-pointer bg-[var(--btn-primary)]">
-          Sign in
+          Create Account
         </button>
       </form>
       <div className="flex items-center pt-4 space-x-1">

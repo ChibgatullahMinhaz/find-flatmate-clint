@@ -4,16 +4,17 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../Context/Context/AuthContext";
+import Swal from "sweetalert2";
 const Login = () => {
-    const {creteUserWithGoogle} = useContext(AuthContext);
-    const navigate = useNavigate();
+  const { creteUserWithGoogle, userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log(email, password);
 
     if (email === "" || password === "") {
       toast.error("Email and password are required");
@@ -38,21 +39,37 @@ const Login = () => {
       return;
     }
 
-
+    userLogin(email, password)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(location?.state?.from || "/");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   const provider = new GoogleAuthProvider();
   const handleGoogleSignIn = () => {
     creteUserWithGoogle(provider)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
         toast.success("Login successful");
-        navigate( location?.state?.from || "/");
-    })
-    .catch(error => {
+        navigate(location?.state?.from || "/");
+      })
+      .catch((error) => {
         toast.error(error.message);
-    })
+      });
   };
   return (
     <motion.div
