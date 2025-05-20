@@ -2,6 +2,11 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import { Home } from "../pages/Home";
 import ErrorLayouts from "../layouts/ErrorLayouts";
+import MyListing from "../pages/MyListing";
+import BrowseListing from "../pages/BrowseListing";
+import AddToFindRommate from "../pages/AddToFindRommate";
+import Login from "../Components/Auth/Login";
+import SingUp from "../Components/Auth/SingUp";
 
 export const routes = createBrowserRouter([
   {
@@ -14,15 +19,23 @@ export const routes = createBrowserRouter([
       },
       {
         path: "Add-to-Find-Roommate",
-        element: <Home />,
+        element: <AddToFindRommate />,
       },
       {
         path: "/BrowseListing",
-        element: <Home />,
+        element: <BrowseListing />,
       },
       {
         path: "/MyListing",
-        element: <Home />,
+        element: <MyListing />,
+      },
+      {
+        path: "/Login",
+        element: <Login />,
+      },
+      {
+        path: "/SignUp",
+        element: <SingUp />,
       },
     ],
   },

@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
-
+:root {
+  --btn-primary: #101828;
+  --btn-secondary: #111111;
+  --btn-accent: #222222;
+  --btn-neutral: #333333;
+  --btn-base-100: #444444;
+}
 .minHight {
   min-height: calc(100vh - 430px);
 }

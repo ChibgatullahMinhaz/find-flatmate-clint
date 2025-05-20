@@ -69,8 +69,8 @@ const Navbar = () => {
         <div className="sm:block hidden">
           <ToggleButton />
         </div>
-        <Link className="btn btn-primary">Login</Link>
-        <Link className="btn btn-primary">Signup</Link>
+        <Link to={`/Login`} className="btn btn-primary">Login</Link>
+        <Link to={`/SignUp`} className="btn btn-primary">Signup</Link>
       </div>
     </div>
   );
