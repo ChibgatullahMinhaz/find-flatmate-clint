@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router";
 import { AuthContext } from "../Context/Context/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Fade } from "react-awesome-reveal";
 
 const DetailsPage = () => {
   const { Id } = useParams();
@@ -72,7 +73,7 @@ const DetailsPage = () => {
                 text: "Your post has been deleted.",
                 icon: "success",
               });
-              navigate('/')
+              navigate("/");
             }
           });
       }
@@ -98,10 +99,12 @@ const DetailsPage = () => {
 
             <div className="p-6">
               <h1 className="text-3xl font-bold mb-2">{listing?.title}</h1>
-              <p className="text-gray-500">
-                Location: {listing?.location} • Room Type: {listing?.roomType} •
-                Posted on {listing?.createdAt}{" "}
-              </p>
+              <Fade>
+                <p className="text-gray-500">
+                  Location: {listing?.location} • Room Type: {listing?.roomType}{" "}
+                  • Posted on {listing?.createdAt}{" "}
+                </p>
+              </Fade>
 
               <hr className="my-4" />
 
