@@ -1,7 +1,8 @@
 import { useState, useEffect, use } from "react";
-import { useParams, Link } from "react-router";
+import { useParams, Link, useNavigate } from "react-router";
 import { AuthContext } from "../Context/Context/AuthContext";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const DetailsPage = () => {
   const { Id } = useParams();
@@ -10,6 +11,7 @@ const DetailsPage = () => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [contactVisible, setContactVisible] = useState(false);
+  const navigate = useNavigate();
 
   const isOwnListing = listing?.email === user?.email;
 
@@ -30,7 +32,7 @@ const DetailsPage = () => {
 
   const handleLikes = () => {
     if (isOwnListing) {
-      toast.warning('you cannot like own post')
+      toast.warning("you cannot like own post");
       return;
     }
     fetch(`http://localhost:9000/postLikes/${Id}`, {
@@ -48,9 +50,41 @@ const DetailsPage = () => {
         }
       });
   };
-const handleDeletPost =()=>{
-console.log('sdn');
-}
+  const handleDeletePost = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://server-iota-khaki.vercel.app/DeletePost/${Id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your post has been deleted.",
+                icon: "success",
+              });
+              navigate('/')
+            }
+          });
+      }
+      if (result.isDismissed) {
+        Swal.fire({
+          title: "Safe😊!",
+          text: "Your post is Safe!",
+          icon: "info",
+        });
+      }
+    });
+  };
   return (
     <>
       <div className="min-h-screen flex flex-col">
@@ -113,11 +147,14 @@ console.log('sdn');
               {isOwnListing && (
                 <div className="mt-6">
                   <Link to={`/updatePost/${listing?._id}`}>
-                    <button className="mr-2 px-4 py-2 bg-yellow-500 text-white rounded">
+                    <button className="mr-2 cursor-pointer px-4 py-2 bg-yellow-500 text-white rounded">
                       Update
                     </button>
                   </Link>
-                  <button onClick={handleDeletPost} className="px-4 py-2 bg-red-600 text-white rounded">
+                  <button
+                    onClick={handleDeletePost}
+                    className="cursor-pointer px-4 py-2 bg-red-600 text-white rounded"
+                  >
                     Delete
                   </button>
                 </div>

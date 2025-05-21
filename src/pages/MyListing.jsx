@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Context/Context/AuthContext";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const MyListing = () => {
   const { user } = use(AuthContext);
@@ -33,9 +34,41 @@ const MyListing = () => {
   };
 
 
-  const handleDeletePost =()=>{
-    console.log('delete');
-  }
+const handleDeletePost = (Id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://server-iota-khaki.vercel.app/DeletePost/${Id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your post has been deleted.",
+                icon: "success",
+              });
+              navigate('/')
+            }
+          });
+      }
+      if (result.isDismissed) {
+        Swal.fire({
+          title: "Safe😊!",
+          text: "Your post is Safe!",
+          icon: "info",
+        });
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -75,7 +108,7 @@ const MyListing = () => {
                 </thead>
                 <tbody>
                   {MyListing.map((listing) => (
-                    <tr key={listing.id} className="border-t">
+                    <tr key={listing._id} className="border-t">
                       <td className="px-6 py-4 font-medium">{listing.title}</td>
                       <td className="px-6 py-4">{listing.location}</td>
                       <td className="px-6 py-4">{listing.roomType}</td>
@@ -98,7 +131,7 @@ const MyListing = () => {
                           </button>
                         </Link>
                         
-                          <button onClick={handleDeletePost} className="px-4 cursor-pointer py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
+                          <button onClick={()=> handleDeletePost(listing._id)} className="px-4 cursor-pointer py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
                             Delete
                           </button>
                        
