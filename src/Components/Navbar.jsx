@@ -3,6 +3,7 @@ import ToggleButton from "./UI/ToggleButton";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/Context/AuthContext";
 import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -84,12 +85,26 @@ const Navbar = () => {
           <ToggleButton />
         </div>
         {user ? (
-        <>
-        <div className="flex items-center gap-x-2">
-          <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt={user?.displayName} />
-          <button className="btn bg-[var(--btn-primary)] text-gray-200" onClick={handleLogout}>Logout</button>
-        </div>
-        </>
+          <>
+            <div className="flex items-center gap-x-2">
+              <a id="not-clickable">
+                <img
+                  className="w-10 h-10 cursor-pointer rounded-full"
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                />
+              </a>
+              <Tooltip anchorSelect="#not-clickable">
+               {user?.displayName}
+              </Tooltip>
+              <button
+                className="btn bg-[var(--btn-primary)] text-gray-200"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          </>
         ) : (
           <>
             <Link to={`/Login`} className="btn btn-primary">
