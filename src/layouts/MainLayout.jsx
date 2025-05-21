@@ -8,14 +8,10 @@ import { ToastContainer } from "react-toastify";
 import LoadingSpinner from "../Components/UI/LoadingSpinner";
 import { motion } from "framer-motion";
 const MainLayout = () => {
-  const [loading, setLoading] = useState(true);
+  const [routeLoading, setRouteLoading] = useState(true);
   const location = useLocation();
   useEffect(() => {
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 300);
-    return () => clearTimeout(timeout);
+    setRouteLoading(false);
   }, [location]);
 
   return (
@@ -33,7 +29,7 @@ const MainLayout = () => {
         </nav>
       </motion.header>
       <main className="minHight">
-        {loading ? (
+        {routeLoading ? (
           <>
             <LoadingSpinner />
           </>

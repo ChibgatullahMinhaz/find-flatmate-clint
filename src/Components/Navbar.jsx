@@ -5,7 +5,7 @@ import { AuthContext } from "../Context/Context/AuthContext";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, loading, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
     Swal.fire({
