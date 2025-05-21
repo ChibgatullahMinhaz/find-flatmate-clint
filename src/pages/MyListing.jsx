@@ -2,21 +2,35 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Context/Context/AuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import LoadingSpinner from "../Components/UI/LoadingSpinner";
 
 const MyListing = () => {
   const { user } = use(AuthContext);
   const [MyListing, setMyList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const email = user?.email;
-  const encodedEmail = encodeURIComponent(email);
+
   useEffect(() => {
-    fetch(`http://localhost:9000/flatPost/${encodedEmail}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setMyList(data);
-      });
-  });
+    try {
+      setLoading(true);
+      const encodedEmail = encodeURIComponent(email);
+      fetch(`https://server-iota-khaki.vercel.app/flatPost/${encodedEmail}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setMyList(data);
+          setLoading(false);
+        });
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [email]);
+
+
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
@@ -33,8 +47,7 @@ const MyListing = () => {
     setMyList(searchPost);
   };
 
-
-const handleDeletePost = (Id) => {
+  const handleDeletePost = (Id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -56,7 +69,7 @@ const handleDeletePost = (Id) => {
                 text: "Your post has been deleted.",
                 icon: "success",
               });
-              navigate('/')
+              navigate("/");
             }
           });
       }
@@ -107,37 +120,47 @@ const handleDeletePost = (Id) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {MyListing.map((listing) => (
-                    <tr key={listing._id} className="border-t">
-                      <td className="px-6 py-4 font-medium">{listing.title}</td>
-                      <td className="px-6 py-4">{listing.location}</td>
-                      <td className="px-6 py-4">{listing.roomType}</td>
-                      <td className="px-6 py-4">${listing.rent}/month</td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                            listing.availability
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
-                          }`}
-                        >
-                          {listing.availability ? "Available" : "Not Available"}
-                        </span>
-                      </td>
-                      <td className="flex items-center justify-center gap-x-2 px-3 py-4 text-right">
-                        <Link to={`/updatePost/${listing._id}`}>
-                          <button className="px-4 py-2 cursor-pointer text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
-                            Update
-                          </button>
-                        </Link>
-                        
-                          <button onClick={()=> handleDeletePost(listing._id)} className="px-4 cursor-pointer py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
+                  {loading ? (
+                    <LoadingSpinner />
+                  ) : (
+                    MyListing.map((listing) => (
+                      <tr key={listing._id} className="border-t">
+                        <td className="px-6 py-4 font-medium">
+                          {listing.title}
+                        </td>
+                        <td className="px-6 py-4">{listing.location}</td>
+                        <td className="px-6 py-4">{listing.roomType}</td>
+                        <td className="px-6 py-4">${listing.rent}/month</td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
+                              listing.availability
+                                ? "bg-green-100 text-green-800"
+                                : "bg-red-100 text-red-800"
+                            }`}
+                          >
+                            {listing.availability
+                              ? "Available"
+                              : "Not Available"}
+                          </span>
+                        </td>
+                        <td className="flex items-center justify-center gap-x-2 px-3 py-4 text-right">
+                          <Link to={`/updatePost/${listing._id}`}>
+                            <button className="px-4 py-2 cursor-pointer text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
+                              Update
+                            </button>
+                          </Link>
+
+                          <button
+                            onClick={() => handleDeletePost(listing._id)}
+                            className="px-4 cursor-pointer py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500"
+                          >
                             Delete
                           </button>
-                       
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

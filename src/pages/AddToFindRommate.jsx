@@ -37,7 +37,7 @@ const AddRoommatePage = () => {
       lifestyle,
     };
     console.log(listingData);
-    fetch("http://localhost:9000/flatPost", {
+    fetch("https://server-iota-khaki.vercel.app/flatPost", {
       method: "POST",
       headers: {
         "content-type": "application/json",

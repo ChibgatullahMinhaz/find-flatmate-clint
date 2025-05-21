@@ -12,7 +12,7 @@ const UpdatePage = () => {
   const [existing, setExisting] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:9000/FindFlatPostById/${Id}`)
+    fetch(`https://server-iota-khaki.vercel.app/FindFlatPostById/${Id}`)
       .then((res) => res.json())
       .then((data) => {
         setExisting(data);
@@ -48,7 +48,7 @@ const UpdatePage = () => {
       lifestyle,
     };
 
-    fetch(`http://localhost:9000/UpdateFlatPost/${Id}`, {
+    fetch(`https://server-iota-khaki.vercel.app/UpdateFlatPost/${Id}`, {
       method: "puT",
       headers: {
         "content-type": "application/json",

@@ -22,7 +22,7 @@ const DetailsPage = () => {
   }, [listing]);
 
   useEffect(() => {
-    fetch(`http://localhost:9000/FindFlatPostById/${Id}`)
+    fetch(`https://server-iota-khaki.vercel.app/FindFlatPostById/${Id}`)
       .then((res) => res.json())
       .then((data) => {
         setListingDetails(data);
@@ -35,7 +35,7 @@ const DetailsPage = () => {
       toast.warning("you cannot like own post");
       return;
     }
-    fetch(`http://localhost:9000/postLikes/${Id}`, {
+    fetch(`https://server-iota-khaki.vercel.app/postLikes/${Id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
