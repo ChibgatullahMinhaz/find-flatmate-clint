@@ -31,12 +31,18 @@ const MyListing = () => {
     );
     setMyList(searchPost);
   };
+
+
+  const handleDeletePost =()=>{
+    console.log('delete');
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
-      <main className="flex-grow bg-gray-50 py-12">
+      <main className="flex-grow  py-12">
         <div className="container mx-auto px-4">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-blue-600 mb-4">
               My Listings
             </h1>
           </div>
@@ -54,10 +60,10 @@ const MyListing = () => {
             </div>
           </div>
 
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div className=" shadow-md rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm text-left">
-                <thead className="bg-gray-100 border-b">
+                <thead className=" border-b">
                   <tr>
                     <th className="px-6 py-3 w-[250px]">Title</th>
                     <th className="px-6 py-3">Location</th>
@@ -85,17 +91,17 @@ const MyListing = () => {
                           {listing.availability ? "Available" : "Not Available"}
                         </span>
                       </td>
-                      <td className="flex items-center justify-center gap-x-2 px-6 py-4 text-right">
+                      <td className="flex items-center justify-center gap-x-2 px-3 py-4 text-right">
                         <Link to={`/updatePost/${listing._id}`}>
-                          <button className="px-4 py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
+                          <button className="px-4 py-2 cursor-pointer text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
                             Update
                           </button>
                         </Link>
-                        <Link to={`/updatePost/${listing._id}`}>
-                          <button className="px-4 py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
+                        
+                          <button onClick={handleDeletePost} className="px-4 cursor-pointer py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
                             Delete
                           </button>
-                        </Link>
+                       
                       </td>
                     </tr>
                   ))}

@@ -6,7 +6,6 @@ import { AuthContext } from "../Context/Context/AuthContext";
 const DetailsPage = () => {
   const { posts } = use(PostContext);
   const {Id} =useParams();
-  console.log(Id);
   const { user } = use(AuthContext);
   const [listing, setListingDetails] = useState(null);
   const [liked, setLiked] = useState(false);
@@ -27,7 +26,6 @@ const DetailsPage = () => {
  
  
 
-  // const formattedDate = new Date(listing.createdAt).toLocaleDateString();
 
   return <>
    <div className="min-h-screen flex flex-col">
@@ -37,7 +35,7 @@ const DetailsPage = () => {
 
           <div className="p-6">
             <h1 className="text-3xl font-bold mb-2">{listing?.title}</h1>
-            <p className="text-gray-600">{listing?.location} • {listing?.roomType} • Posted on {listing?.createdAt} </p>
+            <p className="text-gray-600">Location: {listing?.location} • Room Type: {listing?.roomType} • Posted on {listing?.createdAt} </p>
 
             <hr className="my-4" />
 
@@ -52,7 +50,7 @@ const DetailsPage = () => {
               </ul>
             </div>
 
-            <p className="mb-4"><strong>Listed By:</strong> {listing?.name}</p>
+            <p className="mb-4"><strong>Listed By:</strong> {listing?.name || 'UnKnown'} </p>
 
             <div className="mt-6">
               <button
