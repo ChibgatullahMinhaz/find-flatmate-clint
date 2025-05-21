@@ -14,7 +14,7 @@ const SingUp = () => {
     creteUserWithGoogle(provider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        
         toast.success("Login successful");
         navigate(location?.state?.from || "/");
       })

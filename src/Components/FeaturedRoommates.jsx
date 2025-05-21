@@ -24,7 +24,6 @@ const FeaturedRoommates = () => {
     };
     loadFeatured();
   }, []);
-console.log(featuredRoommates);
   const handleSeeMore = (id) => {
     navigate(`/details/${id}`);
   };
@@ -45,6 +44,7 @@ console.log(featuredRoommates);
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {loading ? (
+              <div className="col-span-3">
               <Box
                 sx={{
                   display: "flex",
@@ -55,6 +55,7 @@ console.log(featuredRoommates);
               >
                 <CircularProgress color="primary" size={60} thickness={4} />
               </Box>
+              </div>
             ) : (
               featuredRoommates.map((roommate) => (
                 <div
@@ -105,6 +106,9 @@ console.log(featuredRoommates);
                 </div>
               ))
             )}
+            {
+              featuredRoommates.length == 0 && 'not post'
+            }
           </div>
         </div>
       </section>

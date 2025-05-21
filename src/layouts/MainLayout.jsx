@@ -11,7 +11,11 @@ const MainLayout = () => {
   const [routeLoading, setRouteLoading] = useState(true);
   const location = useLocation();
   useEffect(() => {
-    setRouteLoading(false);
+    setRouteLoading(true);
+  const timing=  setTimeout(() => {
+      setRouteLoading(false)
+    }, 300);
+    return ()=> clearTimeout(timing)
   }, [location]);
 
   return (

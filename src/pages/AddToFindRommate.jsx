@@ -20,7 +20,8 @@ const AddRoommatePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const form = e.target;
+    const formData = new FormData(form);
     let { availability, ...data } = Object.fromEntries(formData);
     const lifestyle = formData.getAll("lifestylePreferences");
     if (availability) {
@@ -37,7 +38,6 @@ const AddRoommatePage = () => {
       availability,
       lifestyle,
     };
-    console.log(listingData);
     fetch("https://server-iota-khaki.vercel.app/flatPost", {
       method: "POST",
       headers: {
@@ -55,6 +55,7 @@ const AddRoommatePage = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          form.reset();
         }
       });
   };
@@ -226,7 +227,7 @@ const AddRoommatePage = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
+                className="w-full cursor-pointer bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
               >
                 Create Listing
               </button>

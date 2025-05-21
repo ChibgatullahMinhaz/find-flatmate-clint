@@ -27,7 +27,6 @@ const DetailsPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setListingDetails(data);
-        console.log(data);
       });
   }, [Id]);
 
