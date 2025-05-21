@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from "@mui/material";
 
 const FeaturedRoommates = () => {
   const [featuredRoommates, setFeaturedRoommates] = useState([]);
@@ -13,7 +13,9 @@ const FeaturedRoommates = () => {
     const loadFeatured = async () => {
       try {
         setLoading(true);
-        const res = await fetch("https://server-iota-khaki.vercel.app/featured/availability");
+        const res = await fetch(
+          "https://server-iota-khaki.vercel.app/featured/availability"
+        );
         const data = await res.json();
         setFeaturedRoommates(data);
       } catch (error) {
@@ -45,17 +47,23 @@ const FeaturedRoommates = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {loading ? (
               <div className="col-span-3">
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "auto",
-                }}
-              >
-                <CircularProgress color="primary" size={60} thickness={4} />
-              </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "auto",
+                  }}
+                >
+                  <CircularProgress color="primary" size={60} thickness={4} />
+                </Box>
               </div>
+            ) : featuredRoommates.length == 0 ? (
+              <>
+              <div className="col-span-3 text-center">
+                Post are not available at the moment.
+              </div>
+              </>
             ) : (
               featuredRoommates.map((roommate) => (
                 <div
@@ -75,10 +83,12 @@ const FeaturedRoommates = () => {
                         <h3 className="font-bold text-xl text-purple-900">
                           {roommate.title}
                         </h3>
-                        <p className="text-gray-500">Location: {roommate.location}</p>
+                        <p className="text-gray-500">
+                          Location: {roommate.location}
+                        </p>
                       </div>
                       <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                        {roommate.availability && 'Available'}
+                        {roommate.availability && "Available"}
                       </span>
                     </div>
 
@@ -106,9 +116,6 @@ const FeaturedRoommates = () => {
                 </div>
               ))
             )}
-            {
-              featuredRoommates.length == 0 && 'not post'
-            }
           </div>
         </div>
       </section>

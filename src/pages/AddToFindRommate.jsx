@@ -4,11 +4,12 @@ import lifestylePreferences from "../Utilities/utilities";
 import { AuthContext } from "../Context/Context/AuthContext";
 import Swal from "sweetalert2";
 import { Fade } from "react-awesome-reveal";
+import LoadingSpinner from "../Components/UI/LoadingSpinner";
 
 const AddRoommatePage = () => {
   const { user } = use(AuthContext);
   const [lifestyle, setLifestyle] = useState(lifestylePreferences);
-
+  console.log(user.displayName);
   const handleCheckboxChange = (id) => {
     const previousLifestyle = (prev) => {
       return prev.map((pref) =>
@@ -47,6 +48,8 @@ const AddRoommatePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        <LoadingSpinner />;
+
         if (data.acknowledged) {
           Swal.fire({
             position: "top-end",
@@ -55,6 +58,7 @@ const AddRoommatePage = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+
           form.reset();
         }
       });

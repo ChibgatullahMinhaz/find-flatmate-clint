@@ -6,35 +6,20 @@ import { Fade } from "react-awesome-reveal";
 const BrowseListing = () => {
   const { posts } = useContext(PostContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredListings, setFilteredListings] = useState(posts);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-
-    if (!query) {
-      setFilteredListings(posts);
-      return;
-    }
-
-    const filtered = posts.filter(
-      (listing) =>
-        listing.title.toLowerCase().includes(query) ||
-        listing.location.toLowerCase().includes(query)
-    );
-
-    setFilteredListings(filtered);
-  };
+  const filteredListings = posts.filter(
+    (listing) =>
+      listing.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      listing.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <Fade>
-      {" "}
       <div className="min-h-screen flex flex-col">
-        <main className="flex-grow  py-12">
+        <main className="flex-grow py-12">
           <div className="container mx-auto px-4">
             <div className="mb-8">
-              <h1 className="text-3xl font-bold  mb-4">Browse All Listings</h1>
+              <h1 className="text-3xl font-bold mb-4">Browse All Listings</h1>
               <p className="text-lg text-gray-600">
                 Find available roommates that match your preferences
               </p>
@@ -44,19 +29,18 @@ const BrowseListing = () => {
               <div className="max-w-md">
                 <input
                   type="search"
-                  defaultValue={searchQuery}
-                  name="value"
-                  onChange={handleSearch}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by title or location"
                   className="w-full px-4 py-2 border rounded-md border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
               </div>
             </div>
 
-            <div className=" shadow-md rounded-lg overflow-hidden">
+            <div className="shadow-md rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm text-left">
-                  <thead className=" border-b">
+                  <thead className="border-b">
                     <tr>
                       <th className="px-6 py-3 w-[250px]">Title</th>
                       <th className="px-6 py-3">Location</th>
@@ -69,7 +53,7 @@ const BrowseListing = () => {
 
                   <tbody>
                     {filteredListings.map((listing) => (
-                      <tr key={listing.id} className="border-t">
+                      <tr key={listing._id} className="border-t">
                         <td className="px-6 py-4 font-medium">
                           {listing.title}
                         </td>
