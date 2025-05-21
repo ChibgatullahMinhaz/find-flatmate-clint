@@ -7,6 +7,7 @@ import GoTopButton from "../Components/UI/GoTopButton";
 import { ToastContainer } from "react-toastify";
 import LoadingSpinner from "../Components/UI/LoadingSpinner";
 import { motion } from "framer-motion";
+import NetworkStatus from "../Components/NetworkStatus";
 const MainLayout = () => {
   const [routeLoading, setRouteLoading] = useState(true);
   const location = useLocation();
@@ -20,6 +21,7 @@ const MainLayout = () => {
 
   return (
     <>
+    <NetworkStatus />
       <ToastContainer />
       <ScrollToTop />
       <GoTopButton />
