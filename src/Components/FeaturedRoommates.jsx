@@ -72,9 +72,9 @@ console.log(featuredRoommates);
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="font-bold text-xl text-purple-900">
-                          {roommate.name}
+                          {roommate.title}
                         </h3>
-                        <p className="text-gray-500">{roommate.location}</p>
+                        <p className="text-gray-500">Location: {roommate.location}</p>
                       </div>
                       <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                         {roommate.availability && 'Available'}
