@@ -6,7 +6,7 @@ import ScrollToTop from "../Components/UI/ScrollToTop";
 import GoTopButton from "../Components/UI/GoTopButton";
 import { ToastContainer } from "react-toastify";
 import LoadingSpinner from "../Components/UI/LoadingSpinner";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 const MainLayout = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
@@ -14,34 +14,38 @@ const MainLayout = () => {
     setLoading(true);
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 300);
     return () => clearTimeout(timeout);
   }, [location]);
-  
+
   return (
     <>
       <ToastContainer />
       <ScrollToTop />
       <GoTopButton />
-      <motion.header 
-      initial={{opacity: 0, y: -50}}
-      animate={{opacity: 1, y: 0}}
-      transition={{duration: 0.5}}
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
         <nav>
           <Navbar />
         </nav>
       </motion.header>
-      <main className="minHight">{loading ? 
-      <>
-      <LoadingSpinner />
-      </>
-      : <Outlet />}</main>
+      <main className="minHight">
+        {loading ? (
+          <>
+            <LoadingSpinner />
+          </>
+        ) : (
+          <Outlet />
+        )}
+      </main>
 
       <motion.footer
-      initial={{opacity: 0, y: 50}}
-      animate={{opacity: 1, y: 0}}
-      transition={{duration: 0.5}}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
         <Footer />
       </motion.footer>

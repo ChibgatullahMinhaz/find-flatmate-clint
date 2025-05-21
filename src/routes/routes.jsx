@@ -8,6 +8,8 @@ import AddToFindRommate from "../pages/AddToFindRommate";
 import Login from "../Components/Auth/Login";
 import SingUp from "../Components/Auth/SingUp";
 import PrivateRoute from "./PrivetRoute";
+import UpdatePage from "../pages/UpdatePage";
+import DetailsPage from "../pages/DetailsPage";
 
 export const routes = createBrowserRouter([
   {
@@ -20,7 +22,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "Add-to-Find-Roommate",
-        element: <PrivateRoute><AddToFindRommate /></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <AddToFindRommate />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/BrowseListing",
@@ -28,7 +34,27 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/MyListing",
-        element: <PrivateRoute><MyListing /></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <MyListing />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updatePost/:Id",
+        element: (
+          <PrivateRoute>
+            <UpdatePage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/details/:Id",
+        element: (
+          <PrivateRoute>
+            <DetailsPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/Login",

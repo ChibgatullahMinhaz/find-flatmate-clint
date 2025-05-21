@@ -29,6 +29,10 @@ const AddRoommatePage = () => {
     }
     const listingData = {
       ...data,
+      email: user?.email,
+      totalLikes: 0,
+      name: user?.displayName,
+      createdAt: new Date().toLocaleDateString(),
       availability,
       lifestyle,
     };
