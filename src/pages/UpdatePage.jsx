@@ -247,7 +247,7 @@ const UpdatePage = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
+              className="w-full cursor-pointer bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
             >
               Update Now
             </button>

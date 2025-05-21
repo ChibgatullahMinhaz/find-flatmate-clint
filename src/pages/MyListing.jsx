@@ -3,15 +3,14 @@ import { AuthContext } from "../Context/Context/AuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import LoadingSpinner from "../Components/UI/LoadingSpinner";
 import { Fade } from "react-awesome-reveal";
+import { Box, CircularProgress } from "@mui/material";
 
 const MyListing = () => {
-  const { user } = use(AuthContext);
   const [MyListing, setMyList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const { user } = use(AuthContext);
   const [loading, setLoading] = useState(true);
-
   const email = user?.email;
 
   useEffect(() => {
@@ -31,6 +30,23 @@ const MyListing = () => {
     }
   }, [email]);
 
+  if (loading) {
+    return (
+      <>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "auto",
+          }}
+        >
+          <CircularProgress color="primary" size={60} thickness={4} />
+        </Box>
+        ;
+      </>
+    );
+  }
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -109,21 +125,19 @@ const MyListing = () => {
             <div className=" shadow-md rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm text-left">
-                  <thead className=" border-b">
-                    <tr>
-                      <th className="px-6 py-3 w-[250px]">Title</th>
-                      <th className="px-6 py-3">Location</th>
-                      <th className="px-6 py-3">Room Type</th>
-                      <th className="px-6 py-3">Rent</th>
-                      <th className="px-6 py-3">Availability</th>
-                      <th className="px-6 py-3 text-right">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {loading ? (
-                      <LoadingSpinner />
-                    ) : (
-                      MyListing.map((listing) => (
+                  <>
+                    <thead className=" border-b">
+                      <tr>
+                        <th className="px-6 py-3 w-[250px]">Title</th>
+                        <th className="px-6 py-3">Location</th>
+                        <th className="px-6 py-3">Room Type</th>
+                        <th className="px-6 py-3">Rent</th>
+                        <th className="px-6 py-3">Availability</th>
+                        <th className="px-6 py-3 text-right">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {MyListing.map((listing) => (
                         <tr key={listing._id} className="border-t">
                           <td className="px-6 py-4 font-medium">
                             {listing.title}
@@ -159,14 +173,13 @@ const MyListing = () => {
                             </button>
                           </td>
                         </tr>
-                      ))
-                    )}
-                  </tbody>
+                      ))}
+                    </tbody>
+                  </>
                 </table>
               </div>
             </div>
-
-            {MyListing.length === 0 && (
+            {loading === false && MyListing.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-gray-500">
                   No listings found matching your search criteria.
