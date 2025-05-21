@@ -1,31 +1,33 @@
-import React, { useState } from "react";
-import { MOCK_LISTINGS } from "../Utilities/utilities";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
+import { PostContext } from "../Context/Context/PostContext";
 
 const BrowseListing = () => {
+  const { posts } = useContext(PostContext);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredListings, setFilteredListings] = useState(posts);
 
-    const [searchQuery, setSearchQuery] = useState("");
-    const [filteredListings, setFilteredListings] = useState(MOCK_LISTINGS);
-  
-    const handleSearch = (e) => {
-      const query = e.target.value.toLowerCase();
-      setSearchQuery(query);
-  
-      if (!query) {
-        setFilteredListings(MOCK_LISTINGS);
-        return;
-      }
-  
-      const filtered = MOCK_LISTINGS.filter((listing) =>
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = e.target.value.toLowerCase();
+    console.log(query);
+    setSearchQuery(query);
+
+    if (!query) {
+      setFilteredListings(posts);
+      return;
+    }
+
+    const filtered = posts.filter(
+      (listing) =>
         listing.title.toLowerCase().includes(query) ||
         listing.location.toLowerCase().includes(query)
-      );
-  
-      setFilteredListings(filtered);
-    };
+    );
+
+    setFilteredListings(filtered);
+  };
   return (
     <div className="min-h-screen flex flex-col">
-    
       <main className="flex-grow bg-gray-50 py-12">
         <div className="container mx-auto px-4">
           <div className="mb-8">
@@ -40,9 +42,11 @@ const BrowseListing = () => {
           <div className="mb-6">
             <div className="max-w-md">
               <input
-                type="text"
+                type="search"
+                defaultValue={searchQuery}
+                name="value"
+                onChange={handleSearch}
                 placeholder="Search by title or location"
-              
                 className="w-full px-4 py-2 border rounded-md border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
@@ -80,7 +84,7 @@ const BrowseListing = () => {
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <Link to={`/details/${listing.id}`}>
+                        <Link to={`/details/${listing._id}`}>
                           <button className="px-4 py-2 text-sm font-medium border rounded-md border-purple-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-500">
                             See More
                           </button>

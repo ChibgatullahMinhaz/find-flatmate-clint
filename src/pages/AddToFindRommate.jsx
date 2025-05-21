@@ -2,6 +2,7 @@ import { use, useState } from "react";
 import { toast } from "react-toastify";
 import lifestylePreferences from "../Utilities/utilities";
 import { AuthContext } from "../Context/Context/AuthContext";
+import Swal from "sweetalert2";
 
 const AddRoommatePage = () => {
   const { user } = use(AuthContext);
@@ -30,11 +31,27 @@ const AddRoommatePage = () => {
       ...data,
       availability,
       lifestyle,
-      
     };
     console.log(listingData);
-
-    toast.success("Your listing has been successfully created!");
+    fetch("http://localhost:9000/flatPost", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(listingData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Post been Shared",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (
