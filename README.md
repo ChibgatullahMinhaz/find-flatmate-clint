@@ -16,7 +16,7 @@
   Users can register and log in using email/password or Google login via Firebase.
 
 - 🛡 **Protected Routes**  
-  Pages like “Add Listing”, “My Listings”, and “Details” are accessible only to logged-in users.
+  Pages like “Add Listing”, “My Listings”, “Details” and “Update” are accessible only to logged-in users.
 
 - 📄 **CRUD Functionalities**  
   Users can create, read, update, and delete their roommate posts.
@@ -31,29 +31,30 @@
   Optimized layout for mobile, tablet, and desktop views.
 
 - 🧩 **Animations & Effects**  
-  Integrated Lottie React and React Awesome Reveal for enhanced UI experience.
+   Integrated React-tooltip and React Awesome reveal
+  for enhanced UI experience.
 
 - 🧾 **Dynamic Roommate Listings**  
-  Real-time data fetching from MongoDB with pagination and filtering options.
+  Real-time data fetching from MongoDB.
 
 ---
 
 ## 📁 Technologies Used
 
 **Client:**
-- React.js, React Router DOM
+
+- React.js, React Router
 - Tailwind CSS & DaisyUI
 - Firebase Authentication
-- Lottie React, React Awesome Reveal
-- React Hook Form, React Toastify
+- React-tooltip, React Awesome Reveal
+- React Toastify,sweetalert2,motion,lucide-react, mui for loading spinner
 
 **Server:**
+
 - Node.js, Express.js, MongoDB
 - Mongoose, dotenv, CORS
 
 ---
-
-
 
 ## 📞 Contact
 
