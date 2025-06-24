@@ -8,15 +8,14 @@
 
 🔗 [Live Site URL](https://find-roomies.web.app/)
 
+## repo link
+
+🔗 [clint Repo URL](https://find-roomies.web.app/)
+🔗 [Server Repo URL](https://find-roomies.web.app/)
+
 ---
 
 ## ✨ Key Features
-
-- 🔒 **User Authentication**  
-  Users can register and log in using email/password or Google login via Firebase.
-
-- 🛡 **Protected Routes**  
-  Pages like “Add Listing”, “My Listings”, “Details” and “Update” are accessible only to logged-in users.
 
 - 📄 **CRUD Functionalities**  
   Users can create, read, update, and delete their roommate posts.
@@ -47,7 +46,7 @@
 - Tailwind CSS & DaisyUI
 - Firebase Authentication
 - React-tooltip, React Awesome Reveal
-- React Toastify,sweetalert2,motion,lucide-react, mui for loading spinner
+- React Toastify,sweetalert2,motion,lucide-react
 
 **Server:**
 
@@ -56,9 +55,57 @@
 
 ---
 
+## 🧩 Dependencies
+
+
+- react (19.1.0) — Core React library  
+- react-dom (19.1.0) — React DOM renderer  
+- react-router (7.6.0) — Routing and navigation  
+- tailwindcss (4.1.7) — Utility-first CSS framework  
+- daisyui (5.0.35) — Tailwind CSS component library  
+- firebase (11.7.3) — Firebase authentication & services  
+- react-toastify (11.0.5) — Notification system  
+- sweetalert2 (11.21.2) — Beautiful alerts and modals  
+- react-tooltip (5.28.1) — Custom tooltips  
+- react-awesome-reveal (4.3.1) — Reveal animations for React  
+
+🛠️ Run This Project Locally
+
+## 🚀 Local Setup for Client
+
+Clone the client repository and install dependencies:
+
+```bash
+git clone https://github.com/ChibgatullahMinhaz/find-flatmate-clint.git
+cd find-flatmate-clint
+npm install
+npm run dev
+```
+
+## 🚀 Local Setup for Backend
+
+Clone the backend repository and install dependencies:
+
+```bash
+git clone https://github.com/ChibgatullahMinhaz/Find-Flatmate-Server.git
+cd Find-Flatmate-Server
+npm install
+npm start 
+```
+
+## ⚙️ Backend Environment Variables
+
+Create a `.env` file in your backend root directory with the following variables:
+
+```bash
+PORT=9000
+DB_USERS="FindFlatmate"
+DB_PASSWORD="rnzVGU40V1xxF0zs"
+```
+
 ## 📞 Contact
 
-Developed by: **[Chibgatullah Minhaz]**  
+Developed by: **[Chibgatullah Minhaz]**
 Email: [chminhaz.info@gmail.com](mailto:chminhaz.info@gmail.com)
 
 ---
